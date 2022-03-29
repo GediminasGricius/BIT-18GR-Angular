@@ -3,8 +3,6 @@ const btSkaiciuoti=document.getElementById("skaiciuoti");
 let inX = <HTMLInputElement> document.getElementById("var_x");
 let inY = <HTMLInputElement> document.getElementById("var_y");   
 
-
-
 interface Point{
     x:number,
     y:number
@@ -19,16 +17,14 @@ let taskas:Point={
     y:5
 }
 const fSuskaiciuoti=()=>{ 
+    taskas.x=+inX.value;
+    taskas.y=+inY.value;
     if (output!=null){
         output.innerHTML="Atsakymas: "+distance(taskas);
     }
 }
 
-
-
 if (btSkaiciuoti!=null){
-    taskas.x=+inX.value;
-    taskas.y=+inY.value;
     btSkaiciuoti.onclick=fSuskaiciuoti;
 }
 

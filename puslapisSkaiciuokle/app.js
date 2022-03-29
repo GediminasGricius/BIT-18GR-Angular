@@ -11,12 +11,12 @@ let taskas = {
     y: 5
 };
 const fSuskaiciuoti = () => {
+    taskas.x = +inX.value;
+    taskas.y = +inY.value;
     if (output != null) {
         output.innerHTML = "Atsakymas: " + distance(taskas);
     }
 };
 if (btSkaiciuoti != null) {
-    taskas.x = +inX.value;
-    taskas.y = +inY.value;
     btSkaiciuoti.onclick = fSuskaiciuoti;
 }
