@@ -11,17 +11,16 @@ class Zmogus{
         console.log("Aš esu: "+this._vardas+" mano amzius: "+this._amzius);
     }
 
+    
+
     get amzius(){
         return this._amzius;
     }
-
 
     set amzius(amzius:number){
         if (amzius<18) throw new Error("Amzius per mazas");
         this._amzius=amzius;
     }
-
-   
 
 }
 
