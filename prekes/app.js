@@ -19,6 +19,7 @@ class Prekes {
     }
 }
 const btnPrideti = document.getElementById("prideti");
+const btnIstrinti = document.getElementById("istrinti");
 const inpPavadinimas = document.getElementById("pavadinimas");
 const inpKaina = document.getElementById("kaina");
 const inpKiekis = document.getElementById("kiekis");
@@ -46,6 +47,13 @@ if (btnPrideti != null) {
         sandelis.push(new Prekes(inpPavadinimas.value, inpKaina.valueAsNumber, inpKiekis.valueAsNumber));
         outputSandelis();
         localStorage.setItem("prekes", JSON.stringify(sandelis));
+    };
+}
+if (btnIstrinti != null) {
+    btnIstrinti.onclick = () => {
+        localStorage.removeItem("prekes");
+        sandelis = [];
+        outputSandelis();
     };
 }
 outputSandelis();

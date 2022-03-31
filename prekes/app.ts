@@ -25,6 +25,8 @@ class Prekes{
 }
 
 const btnPrideti=document.getElementById("prideti");
+const btnIstrinti=document.getElementById("istrinti");
+
 const inpPavadinimas=<HTMLInputElement>document.getElementById("pavadinimas");
 const inpKaina=<HTMLInputElement>document.getElementById("kaina");
 const inpKiekis=<HTMLInputElement>document.getElementById("kiekis");
@@ -41,12 +43,11 @@ if (jsonString!=null){
         _kaina: number; 
         _kiekis: number; 
     }
-
+    
     data.forEach((obj:dataPreke) => {
         let prod=new Prekes(obj._pavadinimas, obj._kaina, obj._kiekis);
         sandelis.push(prod);
     });
-    
 }
 
 let outputSandelis=()=>{
@@ -68,4 +69,13 @@ if (btnPrideti!=null){
     };
 }
 
+if (btnIstrinti!=null){
+    btnIstrinti.onclick=()=>{
+        localStorage.removeItem("prekes");
+        sandelis=[];
+        outputSandelis();
+    }
+}
+
 outputSandelis();
+
