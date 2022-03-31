@@ -10,7 +10,34 @@
 <body>
     <div class="container">
         <div class="row" >
-            
+           <div class="col-md-6">
+             <div class="card mt-5">
+                 <div class="card-header">Pridėti prekę</div>
+                 <div class="card-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Prekės pavadinimas</label>
+                        <input type="text" class="form-control" id="pavadinimas">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Kaina</label>
+                        <input type="number" class="form-control" id="kaina">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Kiekis</label>
+                        <input type="number" class="form-control" id="kiekis">
+                    </div>
+                    <button class="btn btn-success" id="prideti">Pridėti prekę</button>
+                 </div>
+             </div>
+           </div>
+           <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">Prekių sąrašas</div>
+                <div class="card-body">
+                    <div id="output"></div>
+                </div>
+            </div>
+           </div> 
         </div>
     </div>
     
