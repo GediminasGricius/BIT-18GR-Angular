@@ -24,42 +24,48 @@ class Prekes{
     }
 }
 
+const btnPrideti=document.getElementById("prideti");
+const inpPavadinimas=<HTMLInputElement>document.getElementById("pavadinimas");
+const inpKaina=<HTMLInputElement>document.getElementById("kaina");
+const inpKiekis=<HTMLInputElement>document.getElementById("kiekis");
+const output=document.getElementById("output");
 
 let sandelis:Prekes[]=[];
 
-sandelis.push(new Prekes("Pienas",1,20));
-sandelis.push(new Prekes("Duona",2,10));
+let jsonString=localStorage.getItem("prekes");
+if (jsonString!=null){
+    let data=JSON.parse(jsonString);
 
+    interface dataPreke{
+        _pavadinimas: string; 
+        _kaina: number; 
+        _kiekis: number; 
+    }
 
-let data=JSON.parse(JSON.stringify(sandelis));
-
-//console.log(data);
-
-
-
-let sandelis2:Prekes[]=[];
-
-interface dataPreke{
-    _pavadinimas: string; 
-    _kaina: number; 
-    _kiekis: number; 
+    data.forEach((obj:dataPreke) => {
+        let prod=new Prekes(obj._pavadinimas, obj._kaina, obj._kiekis);
+        sandelis.push(prod);
+    });
+    
 }
 
-data.forEach((obj:dataPreke) => {
-    let prod=new Prekes(obj._pavadinimas, obj._kaina, obj._kiekis);
-    sandelis2.push(prod);
-});
+let outputSandelis=()=>{
+    let tmp:string='';
+    sandelis.forEach(preke=>{
+        tmp+=preke.pavadinimas+" Kaina su PVM: "+preke.kainaSuPVM()+", turimas kiekis: "+preke.kiekis+"<br>";
+    });
+    if (output!=null){
+        output.innerHTML=tmp;
+    }
+};
 
-console.log(sandelis);
-console.log(data);
-console.log(sandelis2);
 
-console.log(sandelis[0].kainaSuPVM());
-//console.log(data[0].kainaSuPVM());
-console.log(sandelis2[0].kainaSuPVM());
+if (btnPrideti!=null){
+    btnPrideti.onclick=()=>{
+        sandelis.push(new Prekes(inpPavadinimas.value,inpKaina.valueAsNumber,inpKiekis.valueAsNumber));
+        outputSandelis();
+        localStorage.setItem("prekes",JSON.stringify(sandelis));
+    };
+}
 
-/*
-
-[{"_pavadinimas":"Pienas","_kaina":1,"_kiekis":20},{"_pavadinimas":"Duona","_kaina":2,"_kiekis":10}]
-
-*/
+outputSandelis();

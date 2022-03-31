@@ -18,24 +18,34 @@ class Prekes {
         return this._kaina * 1.21;
     }
 }
+const btnPrideti = document.getElementById("prideti");
+const inpPavadinimas = document.getElementById("pavadinimas");
+const inpKaina = document.getElementById("kaina");
+const inpKiekis = document.getElementById("kiekis");
+const output = document.getElementById("output");
 let sandelis = [];
-sandelis.push(new Prekes("Pienas", 1, 20));
-sandelis.push(new Prekes("Duona", 2, 10));
-let data = JSON.parse(JSON.stringify(sandelis));
-//console.log(data);
-let sandelis2 = [];
-data.forEach((obj) => {
-    let prod = new Prekes(obj._pavadinimas, obj._kaina, obj._kiekis);
-    sandelis2.push(prod);
-});
-console.log(sandelis);
-console.log(data);
-console.log(sandelis2);
-console.log(sandelis[0].kainaSuPVM());
-//console.log(data[0].kainaSuPVM());
-console.log(sandelis2[0].kainaSuPVM());
-/*
-
-[{"_pavadinimas":"Pienas","_kaina":1,"_kiekis":20},{"_pavadinimas":"Duona","_kaina":2,"_kiekis":10}]
-
-*/ 
+let jsonString = localStorage.getItem("prekes");
+if (jsonString != null) {
+    let data = JSON.parse(jsonString);
+    data.forEach((obj) => {
+        let prod = new Prekes(obj._pavadinimas, obj._kaina, obj._kiekis);
+        sandelis.push(prod);
+    });
+}
+let outputSandelis = () => {
+    let tmp = '';
+    sandelis.forEach(preke => {
+        tmp += preke.pavadinimas + " Kaina su PVM: " + preke.kainaSuPVM() + ", turimas kiekis: " + preke.kiekis + "<br>";
+    });
+    if (output != null) {
+        output.innerHTML = tmp;
+    }
+};
+if (btnPrideti != null) {
+    btnPrideti.onclick = () => {
+        sandelis.push(new Prekes(inpPavadinimas.value, inpKaina.valueAsNumber, inpKiekis.valueAsNumber));
+        outputSandelis();
+        localStorage.setItem("prekes", JSON.stringify(sandelis));
+    };
+}
+outputSandelis();
