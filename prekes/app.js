@@ -24,6 +24,7 @@ const inpPavadinimas = document.getElementById("pavadinimas");
 const inpKaina = document.getElementById("kaina");
 const inpKiekis = document.getElementById("kiekis");
 const output = document.getElementById("output");
+const outSuma = document.getElementById("prekiuSuma");
 let sandelis = [];
 let jsonString = localStorage.getItem("prekes");
 if (jsonString != null) {
@@ -34,12 +35,14 @@ if (jsonString != null) {
     });
 }
 let outputSandelis = () => {
-    if (output != null) {
+    if (output != null && outSuma != null) {
         output.innerHTML = "";
+        let suma = 0;
         sandelis.forEach((preke, indeksas) => {
+            suma += preke.kaina * preke.kiekis;
             const li = document.createElement("li");
             li.className = "list-group-item";
-            li.textContent = preke.pavadinimas + " Kaina su PVM: " + preke.kainaSuPVM() + ", turimas kiekis: " + preke.kiekis;
+            li.textContent = preke.pavadinimas + " Kaina su PVM: " + preke.kainaSuPVM() + " EUR, turimas kiekis: " + preke.kiekis;
             const btn = document.createElement("button");
             btn.textContent = "Ištrinti";
             btn.className = "btn btn-danger float-end";
@@ -50,6 +53,7 @@ let outputSandelis = () => {
             li.appendChild(btn);
             output.appendChild(li);
         });
+        outSuma.textContent = suma + " EUR";
     }
 };
 let deletePreke = (indeksas) => {
