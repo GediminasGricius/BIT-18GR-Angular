@@ -51,14 +51,38 @@ if (jsonString!=null){
 }
 
 let outputSandelis=()=>{
-    let tmp:string='';
-    sandelis.forEach(preke=>{
-        tmp+=preke.pavadinimas+" Kaina su PVM: "+preke.kainaSuPVM()+", turimas kiekis: "+preke.kiekis+"<br>";
-    });
     if (output!=null){
-        output.innerHTML=tmp;
-    }
+        output.innerHTML="";
+
+        sandelis.forEach((preke, indeksas)=>{
+            const li=document.createElement("li");
+            li.className="list-group-item";
+            li.textContent=preke.pavadinimas+" Kaina su PVM: "+preke.kainaSuPVM()+", turimas kiekis: "+preke.kiekis;
+            
+            const btn=document.createElement("button");
+            btn.textContent="Ištrinti";
+            btn.className="btn btn-danger float-end";
+            btn.onclick=()=>{
+                deletePreke(indeksas);
+                console.log("Ištrynėme: "+preke.pavadinimas+" "+indeksas);
+                
+            };
+            li.appendChild(btn);
+
+            output.appendChild(li);
+           
+        });
+
+    }  
 };
+
+let deletePreke=(indeksas:number)=>{
+    sandelis.splice(indeksas,1);
+    outputSandelis();
+    localStorage.setItem("prekes",JSON.stringify(sandelis));
+}
+
+
 
 
 if (btnPrideti!=null){
