@@ -40,17 +40,28 @@ class Point{
     }
 }
 
+class Line{
+    constructor (
+        private _p1:Point,
+        private _p2:Point
+    ){}
+
+    public toString(){
+        return this._p1.toString()+" - "+this._p2.toString();
+    }
+
+    public length(){
+        return this._p1.distance(p2);
+    }
+}
+
+
 
 
 let   p1=new Point(5,5);
-const p2=new Point(5,7);
+let   p2=new Point(5,7);
 
-p1=new Point(1,1);
-p2.y=9;
+let linija=new Line(p1, p2);
+console.log(linija.toString());
+console.log(linija.length());
 
-p2.x=8;
-
-console.log(p1.distance(p2));
-
-
-p1.distance(p2)

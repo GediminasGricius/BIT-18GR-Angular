@@ -31,14 +31,20 @@ class Point {
         return Math.sqrt((p.x - this.x) ** 2 + (p.y - this.y) ** 2);
     }
 }
-let x = 5;
-const y = 8;
-x = 9;
-y = 10;
+class Line {
+    constructor(_p1, _p2) {
+        this._p1 = _p1;
+        this._p2 = _p2;
+    }
+    toString() {
+        return this._p1.toString() + " - " + this._p2.toString();
+    }
+    length() {
+        return this._p1.distance(p2);
+    }
+}
 let p1 = new Point(5, 5);
-const p2 = new Point(5, 7);
-p1 = new Point(1, 1);
-p2.y = 9;
-p2.x = 8;
-console.log(p1.distance(p2));
-p1.distance(p2);
+let p2 = new Point(5, 7);
+let linija = new Line(p1, p2);
+console.log(linija.toString());
+console.log(linija.length());
