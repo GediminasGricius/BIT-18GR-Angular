@@ -33,7 +33,10 @@ const inpKiekis=<HTMLInputElement>document.getElementById("kiekis");
 const output=document.getElementById("output");
 const outSuma=document.getElementById("prekiuSuma");
 
+
 let sandelis:Prekes[]=[];
+
+
 
 let jsonString=localStorage.getItem("prekes");
 if (jsonString!=null){
