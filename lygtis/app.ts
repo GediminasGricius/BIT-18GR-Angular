@@ -52,6 +52,10 @@ class Trupmena{
         this.prideti(t.sveikojiDalis, t.skaitiklis, t.daliklis);
     }
 
+    public toNumber(){
+        return this._sveikojiDalis+this._skaitiklis/this._daliklis;
+    }
+
     private prastinimas(){
         let bdd=this.bdd(this._skaitiklis,this._daliklis);
         this._skaitiklis=this._skaitiklis/bdd;
@@ -73,32 +77,36 @@ class Trupmena{
 }
  
 
-
-class TrupmenaSuGraziuIsvedimu{
-    private _trupmena:Trupmena;
-
+class Lygtis{
     constructor(
-        private _sveikojiDalis:number,
-        private _skaitiklis:number,
-        private _daliklis:number
-    ){
-        this._trupmena=new Trupmena(_sveikojiDalis,_skaitiklis,_daliklis);
-    }
+        private _trupmena1:Trupmena,
+        private _veiksmas:string,
+        private _trupmena2:Trupmena,
+    ){}
 
     public toString(){
-        return this._trupmena.sveikojiDalis+"  sveiki ir  "+this._trupmena.skaitiklis+" / "+this._trupmena.daliklis;
+        return this._trupmena1.toString()        +this._veiksmas+   this._trupmena2.toString();
     }
+
+    public apskaiciuoti(){
+        if (this._veiksmas=="+"){
+            return this._trupmena1.toNumber() + this._trupmena2.toNumber();
+        }
+        if (this._veiksmas=="-"){
+            return this._trupmena1.toNumber() - this._trupmena2.toNumber();
+        }
+        if (this._veiksmas=="*"){
+            return this._trupmena1.toNumber() * this._trupmena2.toNumber();
+        }
+    }
+
 }
 
 
-const t1=new Trupmena(1,1,8);
-const t2=new TrupmenaSuGraziuIsvedimu(2,3,4);
+const t1=new Trupmena(0,1,2);
+const t2=new Trupmena(0,1,5);
 
-/*
-t1.pridetiTrupmena(t2); 
-t2.pridetiInt(3);
-t2.pridetiTrupmena(t1);
-*/
+const lygtis=new Lygtis( t1,"*",t2 );
 
-console.log(t1.toString());
-console.log(t2.toString());
+console.log(lygtis.toString());
+console.log(lygtis.apskaiciuoti());
