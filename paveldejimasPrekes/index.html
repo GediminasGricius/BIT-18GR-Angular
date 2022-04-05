@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row" >
+           <div class="col-md-6">
+             <div class="card mt-5">
+                 <div class="card-header">Pridėti prekę</div>
+                 <div class="card-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Prekės pavadinimas</label>
+                        <input type="text" class="form-control" id="pavadinimas">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Kaina</label>
+                        <input type="number" class="form-control" id="kaina">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Kiekis</label>
+                        <input type="number" class="form-control" id="kiekis">
+                    </div>
+                    <button class="btn btn-success" id="prideti">Pridėti prekę</button>
+                 </div>
+             </div>
+           </div>
+           <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">Prekių sąrašas</div>
+                <div class="card-body">
+                    <ul id="output" class="list-group">
+                        
+                    </ul>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item">Sandėlyje yra prekių už: <span id="prekiuSuma"></span></li>
+                    </ul>
+                    <hr>
+                    <button class="btn btn-success" id="istrinti">Pašalinti prekes</button>
+                </div>
+            </div>
+           </div> 
+        </div>
+    </div>
+    
+    
+   
+    <script src="app.js"></script>
+</body>
+</html>
